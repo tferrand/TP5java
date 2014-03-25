@@ -51,7 +51,7 @@ public class theater_frame2 extends javax.swing.JFrame {
 
         jLabel1.setText("Nom et prénom :");
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText("");
 
         jLabel2.setText("Nom de la pièce :");
 

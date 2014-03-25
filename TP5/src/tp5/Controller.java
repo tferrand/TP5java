@@ -84,8 +84,7 @@ public class Controller{
     
     public void sendReservation(SendData sendData) throws IOException{
         outSocket.println(gson.toJson(sendData));
-        // a bit dirty but didn't want to create another object :(
-        //final String response = inSocket.readLine();
+
         System.out.println(inSocket.readLine());
         
         loadFrameContent();
@@ -97,8 +96,6 @@ public class Controller{
         // This method is called only if a new item has been selected.
         public void itemStateChanged(ItemEvent evt) {
           JComboBox cb = (JComboBox) evt.getSource();
-
-          //Object item = evt.getItem();
 
           if (evt.getStateChange() == ItemEvent.SELECTED) {
             System.out.println("Requesting places for movie '"+cb.getSelectedItem().toString()+"' from server");

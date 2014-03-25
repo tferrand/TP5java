@@ -10,16 +10,13 @@ package tp5_server;
  */
 public class Movies {
     String [] names;
-    String [] places;
 
-    public Movies(String[] names, String[] places){
+    public Movies(String[] names){
         this.names = names;
-        this.places = places;
     }
     
     public Movies() {
         this.names = null;
-        this.places = null;
     }
     
 }

@@ -45,14 +45,13 @@ public class Database {
     public Movies getMoviesFromDb() {
         //create two arrayLists to put the result of the query
         ArrayList<String> names = new ArrayList();
-        ArrayList<String> places = new ArrayList();
-        String query = "SELECT name, places FROM movies WHERE places > 0";
+
+        String query = "SELECT name FROM movies WHERE places > 0";
         try {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 names.add(rs.getString("name"));
-                places.add(rs.getString("places"));
             }
         } catch (SQLException ex) {
             System.out.println("Fail to connect to database");
@@ -60,12 +59,11 @@ public class Database {
         }
         //create two arrays to put the items of the previous arraylists
         String[] arrNames = new String[names.size()];
-        String[] arrPlaces = new String[places.size()];
+
         for (int i = 0; i < names.size(); i++) {
             arrNames[i] = names.get(i);
-            arrPlaces[i] = places.get(i);
         }
-        Movies moviesList = new Movies(arrNames, arrPlaces);
+        Movies moviesList = new Movies(arrNames);
         
         return moviesList;
     }
@@ -140,7 +138,7 @@ public class Database {
             return "Impossible d'effectuer votre réservation";
         }
 
-        return "Reservation code : " + reservationId;
+        return "Reservation validée, id : " + reservationId;
     }
 
   

@@ -10,11 +10,9 @@ package tp5;
  */
 public class Movies {
     String [] names;
-    String [] places;
 
-    public Movies(String[] names, String[] places){
+    public Movies(String[] names){
         this.names = names;
-        this.places = places;
     }
     
 }
