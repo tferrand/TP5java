@@ -10,8 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -128,7 +126,7 @@ public class Database {
             return "An error occured";
         }
         
-        int reservationId = (int) (Math.random() * 99999);
+        int reservationId = (int) (Math.random() * 1000);
         try {
             Statement st = conn.createStatement();
             st.executeUpdate("INSERT INTO reservations (movieId, name, places, reservationId) "
