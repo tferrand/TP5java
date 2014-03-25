@@ -79,20 +79,6 @@ public class theater_frame2 extends javax.swing.JFrame {
                 }
             }
         });
-        
-//        validate.addActionListener(new ActionListener() {
-// 
-//            public void actionPerformed(ActionEvent e){
-//                if(!userFirstname.getText().equals("") &&
-//                        !userName.getText().equals("")){
-//                    try {
-//                        controller.book(new SendData("book", userFirstname.getText(), userName.getText(), dramasComboBox.getSelectedItem().toString(), numberOfPlacesComboBox.getSelectedItem().toString()));
-//                    } catch (Exception ex) {
-//                        Logger.getLogger(TP5Frame.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                }
-//            }
-//        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
