@@ -11,17 +11,15 @@ package tp5_server;
 
 import com.google.gson.Gson;
 import java.io.BufferedReader;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public class TP5_server implements Serializable {
 
@@ -30,15 +28,12 @@ public class TP5_server implements Serializable {
     }
     
     ServerSocket serverSocket;
-    //ArrayList<Theatre> theatre_infos = new ArrayList<Theatre>();
-    //theatre_infos.add(new Theatre("demo",0));
     
     public void begin(int port) throws IOException {
         serverSocket = new ServerSocket(port);
         while (true) {
             System.out.println("Waiting for clients to connect on port " + port + "...");
             new TP5_server.ProtocolThread(serverSocket.accept()).start();
-            //Thread.start() calls Thread.run()
         }
     }
 
@@ -47,7 +42,6 @@ public class TP5_server implements Serializable {
         Socket socket;
         PrintWriter out_socket;
         BufferedReader in_socket;
-        boolean isOver = false;
         Database database;
         Gson gson;
 
@@ -69,9 +63,8 @@ public class TP5_server implements Serializable {
         @Override
         public void run() {
             try {
-                // listen until the client says it's over
-                while(!isOver){
-                    System.out.println("Waiting for a reservation...");
+                while(true){
+                    System.out.println("Waiting for instructions from client...");
                     SendData data = gson.fromJson(in_socket.readLine(), SendData.class);
                     System.out.println("action : " + data.action);
                     switch (data.action) {
@@ -86,9 +79,6 @@ public class TP5_server implements Serializable {
                         case "reserveMovie":
                             System.out.println("Verifying possibility to create reservation");
                             out_socket.println(database.checkPlacesLeft(data));
-                            break;
-                        case "close":
-                            isOver = true;
                             break;
                     }
                 }
@@ -110,22 +100,6 @@ public class TP5_server implements Serializable {
             }
         }
         
-//        public boolean checkValue() throws Exception{
-//            int val = Integer.parseInt(in_socket.readLine());
-//            
-//            if(val > randNbr){
-//                out_socket.println("It's less");
-//            }
-//            else if(val < randNbr){
-//                out_socket.println("It's more");
-//            }
-//            else{
-//                System.out.println("Client won !");
-//                out_socket.println("exit");
-//                return false;
-//            }
-//            return true;
-//        }
     }
 }
 

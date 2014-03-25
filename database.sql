@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mar 25 Mars 2014 à 16:46
+-- Généré le: Mar 25 Mars 2014 à 21:46
 -- Version du serveur: 5.5.25
 -- Version de PHP: 5.4.4
 
@@ -25,15 +25,16 @@ CREATE TABLE `movies` (
   `places` int(2) NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `movies`
 --
 
 INSERT INTO `movies` (`name`, `places`, `id`) VALUES
-('transformes', 30, 1),
-('Avengers', 10, 2);
+('Transformers', 45, 1),
+('Avengers', 20, 2),
+('Inglorious Bastards', 37, 3);
 
 -- --------------------------------------------------------
 
@@ -48,7 +49,7 @@ CREATE TABLE `reservations` (
   `places` int(11) NOT NULL,
   `reservationId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
 
 --
 -- Contenu de la table `reservations`
@@ -80,4 +81,29 @@ INSERT INTO `reservations` (`id`, `movieId`, `name`, `places`, `reservationId`) 
 (23, '2', 'Jess', 16, 50523),
 (24, '1', 'Jess', 2, 75920),
 (25, '2', 'Thomas', 9, 17091),
-(26, '2', 'Thomas', 1, 56749);
+(26, '2', 'Thomas', 1, 56749),
+(27, '1', 'Thomas', 3, 74832),
+(28, '2', 'Thomas', 3, 67709),
+(29, '1', 'tom', 23, 90742),
+(30, '1', 'Thomas', 1, 30616),
+(31, '1', 'Jess', 1, 22380),
+(32, '1', 'tom', 1, 86631),
+(33, '2', 'Tom', 1, 41868),
+(34, '2', 'Thomas', 1, 61151),
+(35, '2', 'Tom', 1, 83361),
+(36, '2', 'Toto', 1, 51151),
+(37, '1', 'Toto', 1, 90270),
+(38, '2', 'Toto', 1, 4388),
+(39, '2', 'Toto', 1, 45414),
+(40, '1', 'Thomas', 1, 96483),
+(41, '1', 'Thomas', 1, 30702),
+(42, '1', 'Thomas', 1, 12338),
+(43, '1', 'Thomas', 1, 48188),
+(44, '1', 'Thomas', 1, 88649),
+(45, '1', 'Jess', 1, 65903),
+(46, '1', 'Jess', 24, 93652),
+(47, '2', 'Thomas', 1, 7558),
+(48, '2', 'Jess', 1, 59496),
+(49, '2', 'Jess', 1, 27894),
+(50, '3', 'Thomas', 1, 66642),
+(51, '3', 'Jess', 2, 96499);

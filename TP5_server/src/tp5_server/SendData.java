@@ -6,13 +6,15 @@
 
 package tp5_server;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Thomas
  * 
  */
 
-public class SendData{
+public class SendData {
     String action;
     String name;
     String movieName;

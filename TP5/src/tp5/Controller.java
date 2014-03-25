@@ -7,14 +7,10 @@ package tp5;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
@@ -47,6 +43,8 @@ public class Controller{
         inSocket = new BufferedReader(new InputStreamReader(socket.getInputStream()));
            
         frame = new theater_frame2(this);
+        frame.setSize(500, 400);
+        frame.setTitle("AlloCine 1980");
         frame.setVisible(true);
         loadFrameContent();
         
@@ -59,17 +57,17 @@ public class Controller{
     
     public void loadFrameContent() throws IOException{
         System.out.println("Requesting movies list from server");
-        //first request to get the dramas list
+        //first request to get the movies list
         outSocket.println(gson.toJson(new SendData("getMovies")));
         
         //transform the answer in object and create the frame with the data
         movies = gson.fromJson(inSocket.readLine(), Movies.class);
         
+        //fill jComboBox1 with movies list
         frame.setjComboBox1(movies.names);
         
-        
+        //request to get the nbr of places for this movie
         System.out.println("Requesting places for movie '"+movies.names[0]+"' from server");
-        //request to get the nbrof places for this movie
         outSocket.println(gson.toJson(new SendData("getPlaces",movies.names[0])));
 
         String placesLeft = inSocket.readLine();
@@ -79,17 +77,27 @@ public class Controller{
         for(int i = 0; i<arrayPlaces.length;i++){
             arrayPlaces[i] = Integer.toString(i+1);
         }
+        //fill jComboBox2 with number of places lefts for movie selected
         frame.setjComboBox2(arrayPlaces);
+
     }
     
     public void sendReservation(SendData sendData) throws IOException{
         outSocket.println(gson.toJson(sendData));
-
-        System.out.println(inSocket.readLine());
         
-        loadFrameContent();
-        
+        //show reservation id
+        frame.labelValidation.setText(inSocket.readLine() + ", Liste mise à jour");
         frame.labelValidation.setVisible(true);
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                frame.labelValidation.setText("");
+            }
+        }, 3000);
+        
+        //reload the two comboBox
+        loadFrameContent();
     }
 
     class MyItemListener implements ItemListener {
@@ -100,7 +108,7 @@ public class Controller{
           if (evt.getStateChange() == ItemEvent.SELECTED) {
             System.out.println("Requesting places for movie '"+cb.getSelectedItem().toString()+"' from server");
 
-            //request to get the nbrof places for this movie
+            //request to get the nbr of places for this movie
             outSocket.println(gson.toJson(new SendData("getPlaces",cb.getSelectedItem().toString())));
             try {
                 String placesLeft = inSocket.readLine();
@@ -110,6 +118,7 @@ public class Controller{
                 for(int i = 0; i<arrayPlaces.length;i++){
                     arrayPlaces[i] = Integer.toString(i+1);
                 }
+                //fill jComboBox2 with number of places lefts for movie selected
                 frame.setjComboBox2(arrayPlaces);
                 
             } catch (IOException ex) {

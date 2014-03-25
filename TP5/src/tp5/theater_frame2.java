@@ -6,10 +6,8 @@ package tp5;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
 /**
@@ -19,7 +17,6 @@ import javax.swing.JLabel;
 public class theater_frame2 extends javax.swing.JFrame {
     
     private Controller controller;
-    private JLabel jLabel5;
     /**
      * Creates new form theatre_frame
      */
@@ -80,30 +77,40 @@ public class theater_frame2 extends javax.swing.JFrame {
             }
         });
 
+        labelValidation.setText("Réservation effectuée");
+        labelValidation.setVisible(false);
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jTextField1)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jComboBox1, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
-                        .add(jLabel3)
-                        .add(labelValidation)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(jComboBox2, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .add(layout.createSequentialGroup()
+                        .addContainerGap()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel1)
-                            .add(jLabel2))
-                        .add(0, 0, Short.MAX_VALUE))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jTextField1)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jComboBox1, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jLabel1)
+                                    .add(jLabel2))
+                                .add(0, 0, Short.MAX_VALUE))
+                            .add(layout.createSequentialGroup()
+                                .add(14, 14, 14)
+                                .add(jLabel3)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(jComboBox2, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .add(layout.createSequentialGroup()
+                        .addContainerGap()
                         .add(jLabel4)
                         .add(18, 18, 18)
-                        .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)))
+                        .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
+            .add(layout.createSequentialGroup()
+                .add(54, 54, 54)
+                .add(labelValidation)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -119,13 +126,14 @@ public class theater_frame2 extends javax.swing.JFrame {
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel3)
-                    .add(labelValidation)
                     .add(jComboBox2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 85, Short.MAX_VALUE)
+                .add(39, 39, 39)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel4)
                     .add(jButton1))
-                .add(20, 20, 20))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 44, Short.MAX_VALUE)
+                .add(labelValidation)
+                .addContainerGap())
         );
 
         pack();
